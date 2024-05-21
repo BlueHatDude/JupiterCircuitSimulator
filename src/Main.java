@@ -1,16 +1,26 @@
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+
 import jupiter.components.*;
-import jupiter.components.JCS_Component.Orientation;
+import jupiter.ui.*;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Battery battery = new Battery(9.0, Orientation.EAST);
-        Wire wire = new Wire(Orientation.NORTH);
-        Resistor resistor = new Resistor(1000, Orientation.SOUTH);
+    private static final ComponentBoard componentBoard = new ComponentBoard(10, 10);
+    private static final JPanel toolbar = new JPanel(new FlowLayout());
+    private static final JPanel components = new JPanel(new GridLayout());
+    private static final JPanel infobar = new JPanel(new FlowLayout());
 
-        System.out.println(battery);
-        System.out.println(wire);
-        System.out.println(resistor);
+    public static void main(String[] args) { 
+        
+        JFrame frame = new JFrame("Jupiter Circuit Simulator");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800, 800);
+        
+        frame.setVisible(true);
     }
     
 }
