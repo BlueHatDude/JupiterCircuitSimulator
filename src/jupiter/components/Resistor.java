@@ -8,12 +8,12 @@ public class Resistor extends JCS_Component {
     private int resistance;
 
     public Resistor(Orientation orientation) {
-        this.orientation = orientation;
+        this.setOrientation(orientation);
     }
     
     public Resistor(int resistance, Orientation orientation) {
         this.resistance = resistance;
-        this.orientation = orientation;
+        this.setOrientation(orientation);
     }
 
     public void setResistance(int resistance) {
@@ -26,7 +26,7 @@ public class Resistor extends JCS_Component {
 
     @Override
     public String toString() {
-        return  this.resistance + " Ω  Ressitor facing " + this.orientation.name();
+        return  this.resistance + " Ω  Ressitor facing " + this.getOrientation().name();
     }
 
 }

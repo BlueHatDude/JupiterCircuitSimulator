@@ -5,13 +5,13 @@ public class Battery extends JCS_Component {
     private double voltage;
 
     public Battery(Orientation orientation) {
-        this.orientation = orientation;
+        this.setOrientation(orientation);
         this.voltage = 0;
     }
 
     public Battery(double voltage, Orientation orientation) {
         this.voltage = voltage;
-        this.orientation = orientation;
+        this.setOrientation(orientation);
     }
 
     public void setVoltage(double voltage) {
@@ -24,7 +24,7 @@ public class Battery extends JCS_Component {
 
     @Override
     public String toString() {
-        return this.voltage + " V Battery facing " + this.orientation.name();
+        return this.voltage + " V Battery facing " + this.getOrientation().name();
     }
 
 }

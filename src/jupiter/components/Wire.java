@@ -6,12 +6,12 @@ package jupiter.components;
 public class Wire extends JCS_Component {
 
     public Wire(Orientation orientation) {
-        this.orientation = orientation;
+        this.setOrientation(orientation);
     }
 
     @Override
     public String toString() {
-        return "Wire facing " + this.orientation.name(); 
+        return "Wire facing " + this.getOrientation().name(); 
     }
 
 }
