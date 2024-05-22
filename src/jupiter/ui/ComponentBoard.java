@@ -37,4 +37,8 @@ public class ComponentBoard {
         return columns;
     }
 
+    public JCS_Component[][] getComponents() {
+        return components;
+    }
+
 }
