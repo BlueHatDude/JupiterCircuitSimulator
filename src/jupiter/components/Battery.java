@@ -6,12 +6,14 @@ public class Battery extends JCS_Component {
 
     public Battery(Orientation orientation) {
         this.setOrientation(orientation);
+        this.setType(ComponentType.BATTERY);
         this.voltage = 0;
     }
 
     public Battery(double voltage, Orientation orientation) {
-        this.voltage = voltage;
         this.setOrientation(orientation);
+        this.setType(ComponentType.BATTERY);
+        this.voltage = voltage;
     }
 
     public void setVoltage(double voltage) {

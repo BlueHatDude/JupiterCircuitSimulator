@@ -6,6 +6,7 @@ package jupiter.components;
 public class Wire extends JCS_Component {
 
     public Wire(Orientation orientation) {
+        this.setType(ComponentType.WIRE);
         this.setOrientation(orientation);
     }
 

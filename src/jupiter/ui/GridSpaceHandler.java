@@ -12,10 +12,12 @@ public class GridSpaceHandler implements ActionListener {
 
     private JButton btn;
     private int index;
+    private ComponentBoard cb;
 
-    public GridSpaceHandler(JButton b, int i) {
+    public GridSpaceHandler(JButton b, int i, ComponentBoard cb) {
         this.btn = b;
         this.index = i;
+        this.cb = cb;
     }
         
     @Override

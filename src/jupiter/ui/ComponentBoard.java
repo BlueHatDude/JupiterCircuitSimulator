@@ -29,6 +29,10 @@ public class ComponentBoard {
         this.components[row][column] = new Wire(comp.getOrientation());
     }
 
+    public JCS_Component getComponentAt(int row, int column) {
+        return this.components[row][column];
+    }
+
     public int getRows() {
         return rows;
     }
@@ -39,6 +43,12 @@ public class ComponentBoard {
 
     public JCS_Component[][] getComponents() {
         return components;
+    }
+
+    public static int index2DtoIndex1D(int row, int column, int ncolumns) {
+
+        return (row * ncolumns) + column;
+        
     }
 
 }

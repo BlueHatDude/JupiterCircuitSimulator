@@ -38,4 +38,20 @@ abstract public class JCS_Component {
         return type;
     }
 
+    public static char typeToChar(ComponentType type) {
+        if (type == null)
+            return '\0';
+        
+        switch (type) {
+            case BATTERY:
+                return 'B';
+            case RESISTOR:
+                return 'R';
+            case WIRE:
+                return 'W';
+            default:
+                return ' ';
+        }
+    }
+
 }
