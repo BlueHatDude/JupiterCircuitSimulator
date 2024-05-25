@@ -72,22 +72,17 @@ public class Main {
                         new GridSpaceHandler(buttons[btnsIndex], btnsIndex, components)
                 );
 
-                drawComponents();
-
-                // if (components.getComponentAt(r, c) != null) {
-                //     char symbol = JCS_Component.typeToChar(components.getComponentAt(r, c).getType());
-                //     buttons[btnsIndex].setText(Character.toString(symbol));
-                // }
-
                 componentBoardContainer.add(buttons[btnsIndex]);
             }
         }
+
+        drawComponents();
 
         /* information bar */
         infoPanel.setPreferredSize(new Dimension(200, frame.getHeight()));
         infoPanel.setBackground(new Color(INFO_PANEL_COLOR));
 
-        /* adding components */
+        /* adding GUI components */
         frame.add(toolbar, BorderLayout.NORTH);
         frame.add(componentBoardContainer, BorderLayout.CENTER);
         frame.add(infoPanel, BorderLayout.EAST);
@@ -99,9 +94,11 @@ public class Main {
         
         for (int r = 0; r < cbRows; r++) {
             for (int c = 0; c < cbColumns; c++) {
-                btnsIndex = ComponentBoard.index2DtoIndex1D(r, c, cbColumns);
-                char symbol = JCS_Component.typeToChar(components.getComponentAt(r, c).getType());
-                buttons[btnsIndex].setText(Character.toString(symbol));
+                if (components.getComponentAt(r, c) != null) {
+                    btnsIndex = ComponentBoard.index2DtoIndex1D(r, c, cbColumns);
+                    char symbol = JCS_Component.typeToChar(components.getComponentAt(r, c).getType());
+                    buttons[btnsIndex].setText(Character.toString(symbol));
+                }
             }
         }
     }
