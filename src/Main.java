@@ -3,17 +3,19 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.*;
 
-import jupiter.components.Battery;
-import jupiter.components.JCS_Component;
-import jupiter.components.Resistor;
-import jupiter.components.Wire;
+import jupiter.components.*;
 import jupiter.components.JCS_Component.Orientation;
+import jupiter.components.JCS_Component.ComponentType;
 import jupiter.ui.*;
 
 public class Main {
 
     /* global constants */
     /** color palette */
+    private static final int BACKGROUND_COLOR = 0xFDD1C4;
+    private static final int TOOLBAR_COLOR = 0xB76E2F;
+    private static final int CB_GRID_SPACE_COLOR = 0xAC6A32;
+    private static final int INFO_PANEL_COLOR = 0x883D07;
 
     /* back-end ui */
     private static final ComponentBoard components = new ComponentBoard(10, 10);
@@ -26,7 +28,7 @@ public class Main {
             cbRows,
             cbColumns,
             5, 5));
-    private static final int numButtons = cbRows * cbColumns;
+    private static final int numButtons = (cbRows * cbColumns);
     private static final JButton[] buttons = new JButton[numButtons];
     private static final JPanel infoPanel = new JPanel(new FlowLayout());
 
@@ -46,23 +48,23 @@ public class Main {
         frame.setLayout(new BorderLayout());
 
         /* toolbar */
-        toolbar.setPreferredSize(new Dimension(frame.getWidth(), 50));
-        toolbar.setBackground(new Color(0xFF0000));
+        toolbar.setPreferredSize(new Dimension(frame.getWidth(), 80));
+        toolbar.setBackground(new Color(TOOLBAR_COLOR));
 
         /* component board container */
         componentBoardContainer.setPreferredSize(new Dimension(600, frame.getHeight()));
         componentBoardContainer.setBorder(new EmptyBorder(5, 5, 5, 5));
-        componentBoardContainer.setBackground(new Color(0x00FF00));
+        componentBoardContainer.setBackground(new Color(BACKGROUND_COLOR));
 
         /* component board buttons */
         int btnsIndex = 0;
-
         for (int r = 0; r < cbRows; r++) {
             for (int c = 0; c < cbColumns; c++) {
                 btnsIndex = ComponentBoard.index2DtoIndex1D(r, c, cbColumns);
                 buttons[btnsIndex] = new JButton();
+                buttons[btnsIndex].setFocusable(false);
                 buttons[btnsIndex].setFont(new Font(Font.MONOSPACED, Font.PLAIN, 18));
-                buttons[btnsIndex].setBackground(new Color(0xFF00FF));
+                buttons[btnsIndex].setBackground(new Color(CB_GRID_SPACE_COLOR));
                 buttons[btnsIndex].setOpaque(true);
                 buttons[btnsIndex].setBorderPainted(false);
                 buttons[btnsIndex].setForeground(new Color(0x000000));
@@ -70,11 +72,12 @@ public class Main {
                         new GridSpaceHandler(buttons[btnsIndex], btnsIndex, components)
                 );
 
-                if (components.getComponentAt(r, c) != null) {
-                    char symbol = JCS_Component.typeToChar(components.getComponentAt(r, c).getType());
-                    System.out.println("Component '" + symbol + "' at (" + r + ", " + c + ")");
-                    buttons[btnsIndex].setText(Character.toString(symbol));
-                }
+                drawComponents();
+
+                // if (components.getComponentAt(r, c) != null) {
+                //     char symbol = JCS_Component.typeToChar(components.getComponentAt(r, c).getType());
+                //     buttons[btnsIndex].setText(Character.toString(symbol));
+                // }
 
                 componentBoardContainer.add(buttons[btnsIndex]);
             }
@@ -82,13 +85,25 @@ public class Main {
 
         /* information bar */
         infoPanel.setPreferredSize(new Dimension(200, frame.getHeight()));
-        infoPanel.setBackground(new Color(0x0000FF));
+        infoPanel.setBackground(new Color(INFO_PANEL_COLOR));
 
         /* adding components */
         frame.add(toolbar, BorderLayout.NORTH);
         frame.add(componentBoardContainer, BorderLayout.CENTER);
         frame.add(infoPanel, BorderLayout.EAST);
         frame.setVisible(true);
+    }
+
+    public static void drawComponents() {
+        int btnsIndex;
+        
+        for (int r = 0; r < cbRows; r++) {
+            for (int c = 0; c < cbColumns; c++) {
+                btnsIndex = ComponentBoard.index2DtoIndex1D(r, c, cbColumns);
+                char symbol = JCS_Component.typeToChar(components.getComponentAt(r, c).getType());
+                buttons[btnsIndex].setText(Character.toString(symbol));
+            }
+        }
     }
 
 }
