@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 /**
  * GridSpaceHandler
@@ -22,8 +24,12 @@ public class GridSpaceHandler implements ActionListener {
         
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btn) {
-            System.out.println("Choose component at index " + this.index);
+        /**
+         * TODO change componentBoard to reflect component chosen
+         */
+        if (e.getSource() == this.btn) {
+            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this.btn);
+            new ComponentSelector(parentFrame);
         }
     }
     
