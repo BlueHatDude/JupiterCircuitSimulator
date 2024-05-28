@@ -29,7 +29,8 @@ public class GridSpaceHandler implements ActionListener {
          */
         if (e.getSource() == this.btn) {
             JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this.btn);
-            new ComponentSelector(parentFrame);
+            ComponentSelector selector = new ComponentSelector(parentFrame);
+            System.out.println(selector.getResponseString());
         }
     }
     

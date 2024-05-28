@@ -12,6 +12,8 @@ import java.awt.FlowLayout;
  */
 public class ComponentSelector extends JDialog {
 
+    private ComponentSelectResponse response;
+
     public ComponentSelector(JFrame parent) {
         /* setting JDialog owner */
         super(parent, "Select a Component");
@@ -25,17 +27,20 @@ public class ComponentSelector extends JDialog {
 
         /* adding options */
         String[] componentNames = {"Battery", "Resistor", "Wire"};
-        ComponentSelectResponse response = new ComponentSelectResponse();
 
         for (String name : componentNames) {
             JButton button = new JButton(name);
-            ComponentSelectHandler handler = new ComponentSelectHandler(button, response);
+            ComponentSelectHandler handler = new ComponentSelectHandler(button, this.response);
             button.addActionListener(handler);
             button.setFocusable(false);
             button.setPreferredSize(new Dimension(100, 100));
             this.add(button);
         }
 
+    }
+
+    public String getResponseString() {
+        return this.response.getResponse();
     }
 
 }
