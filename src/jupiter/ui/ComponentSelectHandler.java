@@ -23,9 +23,11 @@ public class ComponentSelectHandler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.response.setResponse(this.btn.getText());
-        JDialog parentDialog = (JDialog) SwingUtilities.getWindowAncestor(btn);
-        parentDialog.dispatchEvent(new WindowEvent(parentDialog, WindowEvent.WINDOW_CLOSING));
+        if (e.getSource() == this.btn) {
+            this.response.setResponse(this.btn.getText());
+            JDialog parentDialog = (JDialog) SwingUtilities.getWindowAncestor(btn);
+            parentDialog.dispatchEvent(new WindowEvent(parentDialog, WindowEvent.WINDOW_CLOSING));
+        }
     }
     
 }

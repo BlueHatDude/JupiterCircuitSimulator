@@ -44,7 +44,7 @@ public class Main {
         /* frame initialization */
         JFrame frame = new JFrame("Jupiter Circuit Simulator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 800);
+        frame.setSize(900, 900);
         frame.setLayout(new BorderLayout());
 
         /* toolbar */
