@@ -28,7 +28,6 @@ public class ComponentSelector extends JDialog {
         /* adding options */
         String[] componentNames = {"Battery", "Resistor", "Wire"};
 
-        System.out.println("ComponentSelector.ComponentSelector()");
         for (String name : componentNames) {
             JButton button = new JButton(name);
             ComponentSelectHandler handler = new ComponentSelectHandler(button, this.response);

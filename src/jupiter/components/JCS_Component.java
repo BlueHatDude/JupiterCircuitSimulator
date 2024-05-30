@@ -54,4 +54,30 @@ abstract public class JCS_Component {
         }
     }
 
+    public static ComponentType charToType(char c) {
+        switch (c) {
+            case 'B':
+                return ComponentType.BATTERY;
+            case 'R':
+                return ComponentType.RESISTOR;
+            case 'W':
+                return ComponentType.WIRE;
+            default:
+                return null;
+        }
+    }
+
+    public static JCS_Component typeToDefaultComponent(ComponentType type) {
+        switch (type) {
+            case BATTERY: 
+                return new Battery(9.0, Orientation.NORTH);
+            case RESISTOR:
+                return new Resistor(1000, Orientation.NORTH);
+            case WIRE:    
+                return new Wire(Orientation.NORTH);
+            default:
+                return null;
+        }
+    }
+
 }

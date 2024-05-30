@@ -35,11 +35,11 @@ public class Main {
     public static void main(String[] args) {
 
         /* DEBUGGING */
-        Battery battery = new Battery(9.0, Orientation.EAST);
-        components.setComponentAt(battery, 0, 0);
-        components.setComponentAt(new Wire(Orientation.SOUTH), 0, 1);
-        components.setComponentAt(new Resistor((int) 1e3, Orientation.WEST), 1, 1);
-        components.setComponentAt(new Wire(Orientation.NORTH), 1, 0);
+        // Battery battery = new Battery(9.0, Orientation.EAST);
+        // components.setComponentAt(battery, 0, 0);
+        // components.setComponentAt(new Wire(Orientation.SOUTH), 0, 1);
+        // components.setComponentAt(new Resistor((int) 1e3, Orientation.WEST), 1, 1);
+        // components.setComponentAt(new Wire(Orientation.NORTH), 1, 0);
 
         /* frame initialization */
         JFrame frame = new JFrame("Jupiter Circuit Simulator");
