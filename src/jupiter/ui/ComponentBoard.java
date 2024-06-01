@@ -15,21 +15,31 @@ public class ComponentBoard {
     }
 
     public void setComponentAt(JCS_Component comp, int row, int column) {
-
+        switch (comp.getType()) {
+            case BATTERY:
+                this.setComponentAt((Battery) comp, row, column);
+                break;
+            case RESISTOR:
+                this.setComponentAt((Resistor) comp, row, column);
+                break;
+            case WIRE:
+                this.setComponentAt((Wire) comp, row, column);
+                break;
+            default:
+                break;
+        }
     }
 
     public void setComponentAt(Battery comp, int row, int column) {
         this.components[row][column] = new Battery(
-            comp.getVoltage(),
-            comp.getOrientation()
-        );
+                comp.getVoltage(),
+                comp.getOrientation());
     }
 
     public void setComponentAt(Resistor comp, int row, int column) {
         this.components[row][column] = new Resistor(
-            comp.getResistance(),
-            comp.getOrientation()
-        );
+                comp.getResistance(),
+                comp.getOrientation());
     }
 
     public void setComponentAt(Wire comp, int row, int column) {
@@ -55,7 +65,7 @@ public class ComponentBoard {
     public static int index2DtoIndex1D(int row, int column, int ncolumns) {
 
         return (row * ncolumns) + column;
-        
+
     }
 
     public static int[] index1DtoIndex2D(int index, int ncolumns) {
@@ -66,8 +76,8 @@ public class ComponentBoard {
 
         /* (row, column) */
         int[] coordinates = new int[2];
-        coordinates[0] = (int)(index / ncolumns);
-        coordinates[1] = index % ncolumns; 
+        coordinates[0] = (int) (index / ncolumns);
+        coordinates[1] = index % ncolumns;
         return coordinates;
     }
 

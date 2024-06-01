@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 import jupiter.components.*;
 import jupiter.components.JCS_Component.Orientation;
@@ -68,15 +69,13 @@ public class Main {
                 buttons[btnsIndex].setOpaque(true);
                 buttons[btnsIndex].setBorderPainted(false);
                 buttons[btnsIndex].setForeground(new Color(0x000000));
-                buttons[btnsIndex].addActionListener(
-                        new GridSpaceHandler(buttons[btnsIndex], btnsIndex, components)
-                );
 
+                buttons[btnsIndex].addActionListener(
+                        new GridSpaceHandler(buttons[btnsIndex], btnsIndex, components, buttons)
+                );
                 componentBoardContainer.add(buttons[btnsIndex]);
             }
         }
-
-        drawComponents();
 
         /* information bar */
         infoPanel.setPreferredSize(new Dimension(200, frame.getHeight()));
@@ -87,20 +86,6 @@ public class Main {
         frame.add(componentBoardContainer, BorderLayout.CENTER);
         frame.add(infoPanel, BorderLayout.EAST);
         frame.setVisible(true);
-    }
-
-    public static void drawComponents() {
-        int btnsIndex;
-        
-        for (int r = 0; r < cbRows; r++) {
-            for (int c = 0; c < cbColumns; c++) {
-                if (components.getComponentAt(r, c) != null) {
-                    btnsIndex = ComponentBoard.index2DtoIndex1D(r, c, cbColumns);
-                    char symbol = JCS_Component.typeToChar(components.getComponentAt(r, c).getType());
-                    buttons[btnsIndex].setText(Character.toString(symbol));
-                }
-            }
-        }
     }
 
 }

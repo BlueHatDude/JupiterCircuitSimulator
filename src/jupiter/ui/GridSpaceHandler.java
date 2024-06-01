@@ -18,11 +18,13 @@ public class GridSpaceHandler implements ActionListener {
     private JButton btn;
     private int index;
     private ComponentBoard cb;
+    private JButton[] btns;
 
-    public GridSpaceHandler(JButton b, int i, ComponentBoard cb) {
+    public GridSpaceHandler(JButton b, int i, ComponentBoard cb, JButton[] btns) {
         this.btn = b;
         this.index = i;
         this.cb = cb;
+        this.btns = btns;
     }
         
     @Override
@@ -30,12 +32,9 @@ public class GridSpaceHandler implements ActionListener {
         if (e.getSource() == this.btn) {
             JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this.btn);
             ComponentSelector selector = new ComponentSelector(parentFrame);
-
-            ComponentType type = JCS_Component.charToType(selector.getResponseString().charAt(0));
-            JCS_Component component = JCS_Component.typeToDefaultComponent(type);
-            int[] coordinates = ComponentBoard.index1DtoIndex2D(this.index, this.cb.getColumns());
-            this.cb.setComponentAt(component, coordinates[0], coordinates[1]);
-            System.out.printf("Set %s at (%d, %d) \n", component, coordinates[0], coordinates[1]);
+            // System.err.println("GridSpaceHandler.actionPerformed()");
+            // System.err.println(this.btns);
+            selector.addWindowListener(new SelectorCloseHandler(selector, this.cb, this.index, this.btns)); 
         }
     }
     
