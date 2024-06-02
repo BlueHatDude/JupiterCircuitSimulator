@@ -7,9 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import jupiter.components.JCS_Component;
-import jupiter.components.JCS_Component.ComponentType;
-
 /**
  * GridSpaceHandler
  */

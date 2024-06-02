@@ -31,7 +31,8 @@ public class Main {
             5, 5));
     private static final int numButtons = (cbRows * cbColumns);
     private static final JButton[] buttons = new JButton[numButtons];
-    private static final JPanel infoPanel = new JPanel(new FlowLayout());
+    private static final ComponentInfoPanel infoPanel = new ComponentInfoPanel();
+    // private static final JPanel infoPanel = new JPanel(new FlowLayout());
 
     public static void main(String[] args) {
 
@@ -71,8 +72,13 @@ public class Main {
                 buttons[btnsIndex].setForeground(new Color(0x000000));
 
                 buttons[btnsIndex].addActionListener(
-                        new GridSpaceHandler(buttons[btnsIndex], btnsIndex, components, buttons)
+                    new GridSpaceHandler(buttons[btnsIndex], btnsIndex, components, buttons)
                 );
+
+                buttons[btnsIndex].addMouseListener(
+                    new GridSpaceHoverHandler(infoPanel, components, btnsIndex)
+                );
+
                 componentBoardContainer.add(buttons[btnsIndex]);
             }
         }
