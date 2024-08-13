@@ -1,4 +1,3 @@
 #!/bin/bash
 
-cd src
-java Main
+java -cp target/JupiterCircuitSimulator-1.0-SNAPSHOT.jar app.App 
