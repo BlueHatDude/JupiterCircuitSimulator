@@ -18,7 +18,7 @@ public class App {
         Battery battery = new Battery(9.0, Orientation.NORTH);
         Wire wire = new Wire(Orientation.EAST);
         Resistor resistor = new Resistor(1_000, Orientation.SOUTH);
-        LED redLED = new LED(LED_Color.RED, Orientation.NORTH);
+        LED redLED = new LED(LED_Color.RED, Orientation.WEST);
 
         System.out.println(battery);
         System.out.println(wire);
