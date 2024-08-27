@@ -13,13 +13,6 @@ public abstract class JCS_Component {
         LED 
     }; 
 
-    public enum Orientation {
-        NORTH,
-        EAST,
-        SOUTH,
-        WEST
-    };
-
     ComponentType type;
     Orientation orientation;
 

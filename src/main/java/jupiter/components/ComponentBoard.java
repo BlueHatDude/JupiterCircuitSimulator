@@ -10,7 +10,7 @@ public class ComponentBoard {
     private final int rows = 10;
     private final int columns = 10;
     private JCS_Component[] components = new JCS_Component[rows * columns];
-    
+
     public void setComponentAt(Position position, JCS_Component component) {
         int index = this.index2DtoIndex1D(position);
         this.components[index] = component;
@@ -36,16 +36,51 @@ public class ComponentBoard {
             return null;
         }
     }
- 
-    private Position index1DtoIndex2D(int index) {
-        Position pos = new Position();
-        pos.setColumn(index % columns);
-        pos.setRow(index / this.columns);
+
+    public JCS_Component getComponentAt(int row, int column) {
+        if ((row < 0) || (column < 0)) {
+            return null;
+        } else if ((row >= this.rows) || (column >= this.columns)) {
+            return null;
+        } else {
+            int index = this.index2DtoIndex1D(row, column);
+            return this.components[index];
+        }
+    }
+
+    public JCS_Component getComponentTo(Orientation orientation, Position position) {
+        Position newPosition = position.getPositionTo(orientation, this.getRows(), this.getColumns());
+        JCS_Component component = this.getComponentAt(newPosition);
+        return component;
+    }
+
+    public boolean componentExistsAt(int row, int column) {
+        int index = index2DtoIndex1D(row, column);
+        return (this.components[index] != null);
+    }
+
+    public boolean componentExistsTo(Orientation orientation, Position position) {
+        Position newPosition = position.getPositionTo(orientation, this.getRows(), getColumns());
+
+        if (this.getComponentAt(newPosition) == null) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    public Position index1DtoIndex2D(int index) {
+        Position pos = new Position(index / this.columns, index % columns);
         return pos;
     }
 
-    private int index2DtoIndex1D(Position position) {
+    public int index2DtoIndex1D(Position position) {
         return (position.getRow() * this.columns) + position.getColumn();
+    }
+
+    public int index2DtoIndex1D(int row, int column) {
+        return (row * this.columns) + column;
     }
 
 }
