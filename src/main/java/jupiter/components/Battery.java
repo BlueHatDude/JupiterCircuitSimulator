@@ -1,9 +1,18 @@
 package jupiter.components;
 
+/***
+ * TODO: add Javadoc comment here
+*/
 public class Battery extends JCS_Component {
 
     private double voltage;
 
+    /**
+     * standard constructor for Battery component
+     * 
+     * @param voltage the unit is volts
+     * @param orientation cardinal direction
+     */
     public Battery(double voltage, Orientation orientation) {
         super(orientation);
         this.voltage = voltage;

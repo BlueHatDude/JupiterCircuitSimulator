@@ -6,11 +6,10 @@ import java.util.LinkedList;
 import jupiter.components.ComponentBoard;
 import jupiter.components.JCS_Component;
 import jupiter.components.JCS_Component.ComponentType;
-import jupiter.components.Orientation;
 import jupiter.utils.Position;
 
 /**
- * CircuitRunner
+ * TODO: add Javadoc comment here
  */
 public abstract class CircuitRunner {
 
@@ -53,29 +52,41 @@ public abstract class CircuitRunner {
 
     /***
      * Returns an array of JCS_Components that represents the path
-     * that the current will follow. 
+     * that the current will follow.
+     * 
+     * !WARNING: method currently assumes that the path given is valid.
      * 
      * @param board
      * @param pos
      * @param next
      * @return
      */
-    private static JCS_Component[] getComponentPath(ComponentBoard board, Position pos, Orientation next) {
-        LinkedList<JCS_Component> components = new LinkedList<>();
+    private static JCS_Component[] getComponentPath(ComponentBoard board, Position pos) {
+        LinkedList<JCS_Component> path = new LinkedList<>();
+        JCS_Component startComponent = board.getComponentAt(pos);
+        JCS_Component currentComponent = getNextComponent(board, pos);
 
+        while (currentComponent != null) {
+            path.add(currentComponent);
+            pos.move(currentComponent.getOrientation(), board.getRows(), board.getColumns());
+            currentComponent = getNextComponent(board, pos);
 
+            if (currentComponent == startComponent) {
+                break;
+            }
+        }
 
-        return (JCS_Component[]) components.toArray();
+        return (JCS_Component[]) path.toArray();
     }
 
     /***
-     * Returns the next component in ComponentBoard given the current components 
+     * Returns the next component in ComponentBoard given the current components
      * position and orientation. If no next component is found, then this function
      * will return null
      * 
      * @param component
      * @param path
-    */
+     */
     private static JCS_Component getNextComponent(ComponentBoard board, Position position) {
         JCS_Component component = board.getComponentAt(position);
         if (board.getComponentTo(component.getOrientation(), position) != null) {

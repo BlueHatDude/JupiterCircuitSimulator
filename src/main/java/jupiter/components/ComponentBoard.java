@@ -11,6 +11,13 @@ public class ComponentBoard {
     private final int columns = 10;
     private JCS_Component[] components = new JCS_Component[rows * columns];
 
+    /**
+     * sets the component in component board at `position` to `component`
+     * note that this method does not do a deep copy of the of object.
+     * 
+     * @param position
+     * @param component
+     */
     public void setComponentAt(Position position, JCS_Component component) {
         int index = this.index2DtoIndex1D(position);
         this.components[index] = component;
