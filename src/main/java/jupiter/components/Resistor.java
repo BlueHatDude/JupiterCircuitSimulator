@@ -1,5 +1,7 @@
 package jupiter.components;
 
+import jupiter.utils.Orientation;
+
 /**
  * Resistor
  */

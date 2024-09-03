@@ -1,5 +1,7 @@
 package jupiter.components;
 
+import jupiter.utils.Orientation;
+
 /***
  * TODO: add Javadoc comment here
 */

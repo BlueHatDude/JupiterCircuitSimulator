@@ -1,6 +1,8 @@
 // package jupiter.components;
 package jupiter.components;
- 
+
+import jupiter.utils.Orientation;
+
 /**
  * JCS_Component
  */

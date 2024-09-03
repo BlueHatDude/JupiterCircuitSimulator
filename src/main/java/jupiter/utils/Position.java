@@ -1,7 +1,5 @@
 package jupiter.utils;
 
-import jupiter.components.Orientation;
-
 /**
  * Position
  */

@@ -1,4 +1,4 @@
-package jupiter.components;
+package jupiter.utils;
 
 public enum Orientation {
     NORTH,
