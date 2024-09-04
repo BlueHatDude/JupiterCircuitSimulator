@@ -1,1 +1,1 @@
-# JupiterCircuitSimulator
+# Jupiter Circuit Simulator
