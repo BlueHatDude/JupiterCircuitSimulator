@@ -24,6 +24,11 @@ public class ComponentBoard {
         this.components[index] = component;
     }
 
+    public void setComponentAt(int row, int column, JCS_Component component) {
+        int index = this.index2DtoIndex1D(row, column);
+        this.components[index] = component;
+    }
+
     public int getRows() {
         return rows;
     }

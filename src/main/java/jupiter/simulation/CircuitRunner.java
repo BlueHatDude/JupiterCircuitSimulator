@@ -30,7 +30,7 @@ public abstract class CircuitRunner {
     }
 
     private static Position[] findBatteries(ComponentBoard board) {
-        ArrayList<Position> positions = new ArrayList<>();
+        ArrayList<Position> positions = new ArrayList<Position>();
 
         for (int i = 0; i < board.getRows(); i++) {
             for (int j = 0; j < board.getColumns(); j++) {
@@ -42,12 +42,13 @@ public abstract class CircuitRunner {
             }
         }
 
-        return (Position[]) positions.toArray();
+        return positions.toArray(new Position[0]);
     }
 
     private static void handleBattery(ComponentBoard board, Position position) {
         /* find all current paths */
-
+        JCS_Component[] path = getComponentPath(board, position);
+        printPath(path);
     }
 
     /***
@@ -62,7 +63,7 @@ public abstract class CircuitRunner {
      * @return
      */
     private static JCS_Component[] getComponentPath(ComponentBoard board, Position pos) {
-        LinkedList<JCS_Component> path = new LinkedList<>();
+        LinkedList<JCS_Component> path = new LinkedList<JCS_Component>();
         JCS_Component startComponent = board.getComponentAt(pos);
         JCS_Component currentComponent = getNextComponent(board, pos);
 
@@ -76,7 +77,7 @@ public abstract class CircuitRunner {
             }
         }
 
-        return (JCS_Component[]) path.toArray();
+        return path.toArray(new JCS_Component[0]);
     }
 
     /***
@@ -100,6 +101,13 @@ public abstract class CircuitRunner {
     private static void printPositions(ArrayList<Position> positions) {
         for (Position position : positions) {
             System.out.println(position);
+        }
+    }
+
+    @SuppressWarnings("unused")
+    private static void printPath(JCS_Component[] path) {
+        for (JCS_Component component : path) {
+            System.out.println(component);
         }
     }
 
