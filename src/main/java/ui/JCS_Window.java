@@ -1,21 +1,29 @@
 package ui;
 
 import javax.swing.JFrame;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 /**
  * JCS_Window
  */
-public class JCS_Window {
+public class JCS_Window extends JFrame {
 
     public JCS_Window() {
-        JFrame frame = new JFrame();
-        frame.setTitle("Jupiter Circuit Simulator");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 400);
-        frame.setLayout(null);
-        frame.getContentPane().setBackground(new Color(Palette.BACKGROUND));
-        frame.setVisible(true);
+        this.setTitle("Jupiter Circuit Simulator");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(500, 500);
+        this.getContentPane().setBackground(new Color(Palette.WINDOW_BACKGROUND));
+
+        Toolbar toolbar = new Toolbar();
+        InfoPanel infoPanel = new InfoPanel();
+
+        this.setLayout(new BorderLayout());
+        this.add(toolbar, BorderLayout.NORTH);
+        this.add(infoPanel, BorderLayout.EAST);
+
+        this.setVisible(true);
     }
-    
+
 }
