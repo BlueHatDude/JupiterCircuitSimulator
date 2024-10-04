@@ -15,4 +15,13 @@ public abstract class Validation {
         }
     }
 
+    /**
+     * ! WARNING: unimplemented
+     * 
+     * @return
+     */
+    public static boolean valueInArray() {
+        return false;
+    }
+
 }
