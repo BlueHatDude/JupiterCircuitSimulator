@@ -1,5 +1,8 @@
 package jupiter.components;
 
+import java.util.ArrayList;
+
+import jupiter.components.JCS_Component.ComponentType;
 import jupiter.utils.Orientation;
 import jupiter.utils.Position;
 
@@ -11,6 +14,7 @@ public class ComponentBoard {
     private final int rows = 10;
     private final int columns = 10;
     private JCS_Component[] components = new JCS_Component[rows * columns];
+    private ArrayList<Position> batteries = new ArrayList<>();
 
     /**
      * sets the component in component board at `position` to `component`
@@ -19,14 +23,35 @@ public class ComponentBoard {
      * @param position
      * @param component
      */
-    public void setComponentAt(Position position, JCS_Component component) {
+    public void setComponentAt(Position position, JCS_Component component) throws ArrayIndexOutOfBoundsException {        
+        int row = position.getRow();
+        int column = position.getColumn();
+
+        if ((row < 0) || (row >= this.rows))
+            throw new ArrayIndexOutOfBoundsException("Trying to access invalid row");
+        if ((column < 0) || (column >= this.columns))
+            throw new ArrayIndexOutOfBoundsException("Trying to access invalid column");
+        
         int index = this.index2DtoIndex1D(position);
         this.components[index] = component;
+
+        if (component.getType() == ComponentType.BATTERY) {
+            batteries.add(position);
+        }
     }
 
-    public void setComponentAt(int row, int column, JCS_Component component) {
+    public void setComponentAt(int row, int column, JCS_Component component) throws ArrayIndexOutOfBoundsException {
+        if ((row < 0) || (row >= this.rows))
+            throw new ArrayIndexOutOfBoundsException("Trying to access invalid row");
+        if ((column < 0) || (column >= this.columns))
+            throw new ArrayIndexOutOfBoundsException("Trying to access invalid column");
+
         int index = this.index2DtoIndex1D(row, column);
         this.components[index] = component;
+
+        if (component.getType() == ComponentType.BATTERY) {
+            batteries.add(new Position(row, column));
+        }
     }
 
     public int getRows() {
@@ -37,28 +62,38 @@ public class ComponentBoard {
         return columns;
     }
 
-    public JCS_Component getComponentAt(Position position) {
-        if ((position.getRow() < 0) || (position.getColumn() < 0)) {
-            return null;
-        }
-
-        if ((position.getRow() < this.rows) && (position.getColumn() < this.columns)) {
-            int index = this.index2DtoIndex1D(position);
-            return this.components[index];
-        } else {
-            return null;
-        }
+    public ArrayList<Position> getBatteries() {
+        return batteries;
     }
 
-    public JCS_Component getComponentAt(int row, int column) {
-        if ((row < 0) || (column < 0)) {
-            return null;
-        } else if ((row >= this.rows) || (column >= this.columns)) {
-            return null;
-        } else {
-            int index = this.index2DtoIndex1D(row, column);
-            return this.components[index];
-        }
+    /**
+     * Returns a reference to JCS_Component at position. 
+     * If there is no component at that position, then method raises ArrayIndexOutOfBoundsException. 
+     * 
+     * @param position
+     * @return
+     */
+    public JCS_Component getComponentAt(Position position) throws ArrayIndexOutOfBoundsException {
+        int row = position.getRow();
+        int column = position.getColumn();
+
+        if ((row < 0) || (row >= this.rows))
+            throw new ArrayIndexOutOfBoundsException("Trying to access invalid row");
+        if ((column < 0) || (column >= this.columns))
+            throw new ArrayIndexOutOfBoundsException("Trying to access invalid column");
+
+        int index = this.index2DtoIndex1D(position);
+        return this.components[index];
+    }
+
+    public JCS_Component getComponentAt(int row, int column) throws ArrayIndexOutOfBoundsException {
+        if ((row < 0) || (row >= this.rows))
+            throw new ArrayIndexOutOfBoundsException("Trying to access invalid row");
+        if ((column < 0) || (column >= this.columns))
+            throw new ArrayIndexOutOfBoundsException("Trying to access invalid column");
+        
+        int index = this.index2DtoIndex1D(row, column);
+        return this.components[index];
     }
 
     public JCS_Component getComponentTo(Orientation orientation, Position position) {
