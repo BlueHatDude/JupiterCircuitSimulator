@@ -1,6 +1,6 @@
 package app;
 
-import ui.JCS_Window;
+import ui.components.JCS_Window;
 
 /**
  * Hello world!
