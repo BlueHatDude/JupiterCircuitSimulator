@@ -5,6 +5,8 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
+import ui.general.Palette;
+
 /**
  * InfoPanel
  */

@@ -2,6 +2,8 @@ package ui.components;
 
 import javax.swing.JFrame;
 
+import ui.general.Palette;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 
