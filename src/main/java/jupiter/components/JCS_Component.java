@@ -4,7 +4,8 @@ package jupiter.components;
 import jupiter.utils.Orientation;
 
 /**
- * JCS_Component
+ * The JCS_Component class is the base class that all components of
+ * Jupiter Circuit Simulator inherit. 
  */
 public abstract class JCS_Component {
 

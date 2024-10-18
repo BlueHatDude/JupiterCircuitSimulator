@@ -1,7 +1,9 @@
 package jupiter.utils;
 
 /**
- * Position
+ * The Position class stores a row and column. The row and column will
+ * never be less than zero. The methods also come with built in range 
+ * restrictions for the rows and columns of the container. 
  */
 public class Position {
 
@@ -34,7 +36,7 @@ public class Position {
         this.setColumn(column);
     }
 
-    public void move(Orientation orientation, int rows, int columns) {
+    public void moveBounded(Orientation orientation, int rows, int columns) throws IllegalArgumentException {
         switch (orientation) {
             case NORTH:
                 this.row = Validation.constrainInt(this.row - 1, 0, rows - 1);
@@ -49,7 +51,26 @@ public class Position {
                 this.column = Validation.constrainInt(this.column - 1, 0, columns - 1);
                 break;
             default:
+                throw new IllegalArgumentException("Invalid orientation");
+        }
+    }
+
+    public void moveUnbounded(Orientation orientation) throws IllegalArgumentException {
+        switch (orientation) {
+            case NORTH:
+                this.row--;
                 break;
+            case EAST:
+                this.column++;
+                break;
+            case SOUTH:
+                this.row++;
+                break;
+            case WEST:
+                this.column--;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid orientation");
         }
     }
 

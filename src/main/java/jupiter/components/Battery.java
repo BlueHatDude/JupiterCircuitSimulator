@@ -3,7 +3,8 @@ package jupiter.components;
 import jupiter.utils.Orientation;
 
 /***
- * TODO: add Javadoc comment here
+ * Standard battery component for Jupiter Circuit Simulator. Voltage
+ * can be changed, but the default is 9 V.
 */
 public class Battery extends JCS_Component {
 
@@ -22,6 +23,9 @@ public class Battery extends JCS_Component {
     }
 
     public void setVoltage(double voltage) {
+        if (voltage < 0)
+            throw new IllegalArgumentException("Voltage cannot be negative");
+
         this.voltage = voltage;
     }
 
